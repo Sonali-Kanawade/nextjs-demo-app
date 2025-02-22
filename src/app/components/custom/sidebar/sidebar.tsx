@@ -1,9 +1,21 @@
-import React from 'react'
+"use client";
+import { useState } from 'react';
+import Link from 'next/link';
 
-function Sidebar() {
+export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <div className='text-center sm:text-left md:text-center lg:text-right xl:text-justify p-20 text-red-500 w-3xs border-solid border-4 border-gray-600'>Sidebar</div>
-  )
+    <div className="relative h-screen">
+      
+      <aside className={`fixed top-0 left-0 h-full bg-white shadow-lg p-5 w-64 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
+        <nav className="space-y-4">
+          <Link href="/dashboard" className="block hover:text-gray-500">Dashboard</Link>
+          <Link href="/profile" className="block hover:text-gray-500">Profile</Link>
+          <Link href="/settings" className="block hover:text-gray-500">Settings</Link>
+          <Link href="/logout" className="block hover:text-gray-500">Logout</Link>
+        </nav>
+      </aside>
+    </div>
+  );
 }
-
-export default Sidebar
